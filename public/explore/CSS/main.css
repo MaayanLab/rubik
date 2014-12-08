@@ -1,0 +1,29 @@
+.labelBox{
+	width:87%;
+	/*margin:2em;*/
+	margin-top: 0.5em;
+	margin-bottom:0.5em;
+}
+
+.custom-menu{
+	background: black;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.custom-button{
+	font-size:0.75em;
+	background: rgb(66, 184, 221);;
+	color:white;
+	vertical-align: 10%;
+}
+
+h4{
+	margin-bottom: 0.5em
+}
+
+.container{
+	margin-top:2em;
+}

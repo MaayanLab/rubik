@@ -1,0 +1,78 @@
+.labelBox{
+	width:70%;
+	/*margin:2em;*/
+	margin-top: 0.08em;
+	margin-bottom:0.5em;
+}
+
+.custom-menu{
+	background: black;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding-bottom: 0.5em;
+	padding-top:0.5em;
+}
+
+.custom-button{
+	font-size:0.75em;
+	background: rgb(66, 184, 221);;
+	color:white;
+	vertical-align: 10%;
+	float:right;
+	margin-right: 0.8em;
+}
+
+h4{
+	margin-bottom: 0.5em;
+	margin-top:1em;
+	
+}
+
+.hCompare{
+	border-top-color: grey;
+	border-top-style: solid;
+	border-top-width: thin;
+	vertical-align: 20%;
+	padding-top: 0.5em;
+}
+
+.container{
+	margin-top:2.8em;
+	
+}
+
+.tag{
+	background: black;
+	color: white;
+	position: fixed;
+	top: 2.8em;
+	/*width: 50%;*/
+	/*left: 50%;*/
+	border-bottom-style: solid;
+	border-bottom-color: white;
+	border-bottom-width: thin;
+}
+
+.rubic{
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+	float: left;
+	margin-left: 1em;
+}
+
+.rubic-title{
+	color: white;
+	vertical-align: middle;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-right: 0.5em;
+	float: left;
+	margin-left: 0.3em;
+}
+
+.description-title{
+	color:white;
+}

@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    title grids
+    script(type='text/javascript').
+      var grids = !{JSON.stringify(grids)};
+    script(src="main-built.js")
+    link(rel="stylesheet",href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css")
+    link(rel="stylesheet",href="CSS/jquery-ui.css")
+    link(rel="stylesheet",href="CSS/main.css")
+  body(style='text-align:center')
+    div(class="pure-menu pure-menu-horizontal  custom-menu")
+      input(class="labelBox", placeholder="click a tile to show its label here so that you can copy it : )")
+      //- button(class="pure-button pure-button-active custom-button") Download
+    div(class="pure-g container", id="container")
