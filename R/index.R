@@ -28,3 +28,4 @@ my.app <- function(env){
 s$add(app=my.app, name='Rubik')
 ## Open a browser window and display the web app
 # s$browse('Rubik')
+

@@ -3,6 +3,7 @@ html(lang="en")
   head
     title grids
     script(type='text/javascript').
+      var tags = !{JSON.stringify(tags)};
       var grids = !{JSON.stringify(grids)};
       var enrichments = !{JSON.stringify(enrichments)};
     script(data-main="scripts/main", src="scripts/require.js")

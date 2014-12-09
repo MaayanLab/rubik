@@ -9,6 +9,7 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 		this.gridNames = args.gridNames;
 		this.grids = args.grids;
 		this.enrichments = args.enrichments||undefined;
+		this.tags = args.tags||undefined;
 		this.labelBox = args.labelBox;
 
 	}
@@ -23,11 +24,29 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 			return tile;
 		});
 	}
+
+	var addTags = function(self){
+		var tags =self.tags;
+			var pureGridClass = 'pure-u-1-'+(tags.length);
+			tags.forEach(function(tag,i){
+				var left = (1/tags.length)*100;
+				d3.select('body').append('div')
+							  .attr('class','tag')
+							  .style('width',left.toFixed(1)+'%')
+							  .style('left',left.toFixed(1)*i+'%')
+							  .text(tag);
+			});
+
+		return tags;
+	}
 	// end of private methods
+
+
 
 	var methods = {
 		single:function(){
-			d3.select('#container').selectAll('div').data(this.gridNames)
+			addTags(this);
+			this.container.selectAll('div').data(this.gridNames)
 								.enter().append('div')
 								.attr('class','pure-u-1-2')
 								.each(function(d){
@@ -36,8 +55,9 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 									holder.append('div').attr('name','gridContainer').attr('id',d);
 								});
 
-			for(var key in grids){
-				var grid = grids[key];
+			for(var key in this.grids){
+				var grid = this.grids[key];
+				grid = addEnrichment(self.enrichments[0][key],grid);
 				grid = this.addColor.add(key,grid);
 				var canvas = new Canvas({containerID:key,stageSize:300});
 				canvas.changeData(grid);
@@ -47,17 +67,9 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 		},
 
 		compare:function(){
-			var tags = Object.keys(this.enrichments);
-			var pureGridClass = 'pure-u-1-'+(tags.length);
-			var self = this;
-			tags.forEach(function(tag,i){
-				var left = (1/tags.length)*100;
-				d3.select('body').append('div')
-							  .attr('class','tag')
-							  .style('width',left.toFixed(1)+'%')
-							  .style('left',left.toFixed(1)*i+'%')
-							  .text(tag);
-			});
+			var tags = addTags(this),
+			    self = this;
+				pureGridClass = 'pure-u-1-'+(tags.length);
 			this.gridNames.forEach(function(gridName){
 				self.container.append('div')
 			 			  .attr('class','pure-u-1-1')
@@ -65,14 +77,14 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 			 			  .append('h4')
 			 			  .attr('class','hCompare')
 			 			  .text(gridName);
-				tags.forEach(function(tag){
+				tags.forEach(function(tag,i){
 					var id = tag+'-'+gridName;
 					var holder = d3.select(self.selector).append('div')
 											.attr('class',pureGridClass)
 											.attr('id',id);
 
 					var grid = self.grids[gridName];
-					grid = addEnrichment(self.enrichments[tag][gridName],grid);
+					grid = addEnrichment(self.enrichments[i][gridName],grid);
 					grid = self.addColor.add(gridName,grid);
 					var canvas = new Canvas({containerID:id,stageSize:300});
 					canvas.changeData(grid);

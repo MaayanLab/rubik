@@ -2,9 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-var grids = require('app/gridsRequestHandlers.js');
-var Fisher = require('app/Fisher.js');
-
+var grids = require('app/handlers.js');
 
 app.use('/rubik',express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({limit:'50mb',extended:true}));

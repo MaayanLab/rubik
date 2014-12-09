@@ -79,15 +79,11 @@ require(['CanvasForGrids','AddColor','d3','jquery','SaveSvg','LabelBox','Layout'
 	var labelBox = new LabelBox({selector:".labelBox"});
 
 
-	if(typeof enrichments=="undefined"){
-		var layout = new Layout({addColor:addColor,gridNames:gridNames,
-			grids:grids,labelBox:labelBox})
-		layout.single();
-	}else{
-		var layout = new Layout({addColor:addColor,gridNames:gridNames,
-			grids:grids,labelBox:labelBox,enrichments:enrichments})
-		layout.compare();
-	}
+	var layout = new Layout({addColor:addColor,gridNames:gridNames,
+			grids:grids,labelBox:labelBox,enrichments:enrichments,tags:tags});
+
+	if(tags.length==1) layout.single();
+	else layout.compare();
 	
 
 
