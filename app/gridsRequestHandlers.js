@@ -1,14 +1,12 @@
-
 var fs = require('fs');
 var us = require('underscore');
 // var packer = require('zip-stream');
 var archiver = require('archiver');
 var async = require('async');
-
 var jade = require('jade');
-
 var natural = require('natural');
 
+// template:
 var templateFn = jade.compileFile('public/views/grids.jade',{pretty:true});
 // standalone template for exploring
 var exploreTemplateFn = jade.compileFile('public/views/explore.jade',{pretty:true});

@@ -38,20 +38,28 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 		else $scope.moreThanOne = false;
 	});
 
-		$scope.visualize = function(){
-			console.log($scope.geneLists);
-			// if($scope.genes){
-			// 	var input = _.unique(S($scope.genes.toUpperCase())
-			// 		.trim().s.split("\n"));
-			// 	//trim unvisible char like \r after each gene if any
-			// 	input = _.map(input,function(gene){
-			// 		return S(gene).trim().s;
-			// 	});
-			// 	$http.post(baseURL+"query",{input:input})
-			// 		.success(function(data) {
-			// 		$scope.entries = process(data);
-			// 	});
-			// }
-		}	
+	// for test purpose
+	$scope.fillInText = function(){
+			$http.get('data/example-genes.txt').success(function(data){
+				$scope.geneLists[0].genes = data;
+				$scope.geneLists[0].desc = "Enrichr Example";
+			});
 	}
-]);
+	$scope.fillInText();
+
+	$scope.visualize = function(){
+		console.log($scope.geneLists);
+		// if($scope.genes){
+		// 	var input = _.unique(S($scope.genes.toUpperCase())
+		// 		.trim().s.split("\n"));
+		// 	//trim unvisible char like \r after each gene if any
+		// 	input = _.map(input,function(gene){
+		// 		return S(gene).trim().s;
+		// 	});
+		// 	$http.post(baseURL+"query",{input:input})
+		// 		.success(function(data) {
+		// 		$scope.entries = process(data);
+		// 	});
+		// }
+	}	
+}]);
