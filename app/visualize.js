@@ -5,9 +5,6 @@ var jade = require('jade');
 var natural = require('natural');
 
 
-var templateFn = jade.compileFile('public/views/grids.jade',{pretty:true});
-// standalone template for exploring
-var exploreTemplateFn = jade.compileFile('public/views/explore.jade',{pretty:true});
 var compareTemplateFn = jade.compileFile('public/views/compare.jade',{pretty:true});
 
 var baseURL = 'http://10.91.53.79:8080/grids/';
@@ -85,7 +82,7 @@ var mostSimilar = function(terms,term){
 
 
 
-exports.main = function(enrichRes,res){
+exports.visualize = function(enrichRes,res){
 	// enrichRes Structure:
 	// enrichRes --- [perRes]
 	// 		  		--- tag

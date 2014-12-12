@@ -1,7 +1,7 @@
 var indexControllers = angular.module('indexControllers', []);
 
 
-var baseURL = window.location.protocol+"//"+window.location.host + "/sigine/";
+var baseURL = window.location.protocol+"//"+window.location.host + "/rubik/";
 
 var process = _.identity;
 indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$http){
@@ -40,7 +40,7 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 
 	// for test purpose
 	$scope.fillInText = function(){
-			$http.get('data/example-genes.txt').success(function(data){
+			$http.get('data/example-genes-lite.txt').success(function(data){
 				$scope.geneLists[0].genes = data;
 				$scope.geneLists[0].desc = "Enrichr Example";
 			});
@@ -49,17 +49,22 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 
 	$scope.visualize = function(){
 		console.log($scope.geneLists);
-		// if($scope.genes){
-		// 	var input = _.unique(S($scope.genes.toUpperCase())
-		// 		.trim().s.split("\n"));
-		// 	//trim unvisible char like \r after each gene if any
-		// 	input = _.map(input,function(gene){
-		// 		return S(gene).trim().s;
-		// 	});
-		// 	$http.post(baseURL+"query",{input:input})
-		// 		.success(function(data) {
-		// 		$scope.entries = process(data);
-		// 	});
-		// }
+		if($scope.allInputValid){
+			var input = _.map($scope.geneLists,function(geneList){
+				var e = {};
+				e.desc = geneList.desc;
+				e.genes = _.unique(S(geneList.genes.toUpperCase())
+				.trim().s.split("\n"));
+				e.genes = _.map(e.genes,function(gene){
+					return S(gene).trim().s;
+				});
+				return e;
+			});
+
+			$http.post(baseURL+"enrich",{input:input})
+				.success(function(data) {
+				console.log(data);
+			});
+		}
 	}	
 }]);

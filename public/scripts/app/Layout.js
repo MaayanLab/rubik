@@ -51,7 +51,9 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 								.attr('class','pure-u-1-2')
 								.each(function(d){
 									var holder = d3.select(this);
-									holder.append('h4').text(d);
+									holder.append('h4')
+									.attr('class','hSingle')
+									.text(d);
 									holder.append('div').attr('name','gridContainer').attr('id',d);
 								});
 

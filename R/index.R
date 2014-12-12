@@ -1,7 +1,17 @@
-require(Rook)
+library(Rook)
 library(Matrix)
 library(jsonlite)
 
+
+
+# prelude, Fisher exact function on input ---------------------------------
+
+source("enrich.R")
+
+
+
+
+# server start ------------------------------------------------------------
 
 s <- Rhttpd$new()
 s$start(listen='127.0.0.1')
@@ -15,9 +25,11 @@ my.app <- function(env){
   res$header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE")
   
   print('good')
-  idx <- fromJSON(req$POST()$idx)
-  print(idx[1:3])
-  print('cc')
+  input <- fromJSON(req$POST()$input)
+  libraryNames <- fromJSON(req$POST()$libraries)
+  print(input$desc)
+  print(input$genes)
+  print(libraryNames)
   
   ptm <- proc.time()
   res$write('g.transform(param)')
@@ -27,5 +39,5 @@ my.app <- function(env){
 
 s$add(app=my.app, name='Rubik')
 ## Open a browser window and display the web app
-# s$browse('Rubik')
+s$browse('Rubik')
 
