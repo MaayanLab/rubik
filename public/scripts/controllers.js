@@ -68,7 +68,7 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 
 			$http.post(baseURL+"enrich",{input:input})
 				.success(function(data) {
-				console.log(data);
+				window.location=data;
 			});
 		}
 	}	

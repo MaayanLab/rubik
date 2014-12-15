@@ -16,6 +16,31 @@ function AddColor(args){
 	this.colorMap = colorMap;
 
 }
+
+
+//private functions
+var getNonInfiniteWeights = function(pvals,logBase){
+	// if pval == 0, the socre will be infinite
+	var sortedPvals = _.sortBy(pvals,_.identity);
+	var i=0;
+	while(sortedPvals[i]==0){
+		i++;
+	}
+	var getScore = function(pval){
+		return -math.log(pval,logBase)
+	}
+
+	var maxScore = getScore(sortedPvals[i])+getScore(sortedPvals[i])-
+					getScore(sortedPvals[i+1]);
+	
+	var weights = [];
+	pvals.forEach(function(e){
+		if(e==0) weights.push(maxScore);
+		else weights.push(getScore(e));
+	})
+	return weights;
+}
+
     
 var addColorMethods = {
 	// for raw grid data, basically an array of [identity, fitness].
@@ -43,7 +68,9 @@ var addColorMethods = {
 	add: function(gridName,gridData){
 		var color = this.colorMap[gridName];
 		var scaleExponent = 2;
-		var weights = _.map(gridData,function(d){return -math.log(d.pval,2)});
+		// var weights = _.map(gridData,function(d){return -math.log(d.pval,2)});
+		var pvals = _.map(gridData,function(d){return d.pval});
+		var weights = getNonInfiniteWeights(pvals,2);
 		var colorScale = d3.scale.pow().exponent(scaleExponent)
 						.domain([_.min(weights),_.max(weights)])
 						.range(["black",color]);

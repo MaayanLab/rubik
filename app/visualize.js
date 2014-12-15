@@ -7,7 +7,7 @@ var natural = require('natural');
 
 var compareTemplateFn = jade.compileFile('public/views/compare.jade',{pretty:true});
 
-var baseURL = 'http://10.91.53.79:8080/grids/';
+var baseURL = 'http://10.91.53.79:8080/rubik/';
 
 
 var libraryNameToGridName = {'ChEA2':'ChEA','KEGG_pathways':'KEGG_new',
@@ -140,7 +140,8 @@ exports.visualize = function(enrichRes,res){
 			enrichments.push(enrichment);
 		}); // tags.forEach
 
-		var filename = tags.join('_')+'_grids.html';
+		var randStr = Math.random().toString(36).substring(7);
+		var filename = 'rubik_'+randStr+'.html';
 		fs.writeFile('public/'+filename,
 			compareTemplateFn({tags:tags,enrichments:enrichments,grids:canvases}),
 			function(err,results){

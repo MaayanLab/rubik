@@ -10,11 +10,11 @@ var headers = {
 
 
 exports.enrich = function(input,res){
-    var libraries = ['WikiPathways_pathways','KEGG_pathways']
+    var libraries = ['ChEA2','KEGG_pathways',"GeneOntology_BP",
+        "GeneOntology_MF","MGI_MP_top4","KEA"]
 
-    console.log(input.slice(0,20))
     var options = {
-        url: 'http://127.0.0.1:15300/custom/Rubik',
+        url: 'http://127.0.0.1:26467/custom/Rubik',
         method: 'POST',
         headers: headers,
         form: {'input': JSON.stringify(input),
@@ -25,10 +25,11 @@ exports.enrich = function(input,res){
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             // Print out the response body
-            console.log(body)
-            res.send(body);
+            console.log(body,typeof(body))
+            // res.send(body);
             // var enrichRes = JSON.parse(body);
-            // visualize(enrichRes,res);
+            
+            visualize(JSON.parse(body),res);
         }
     });
 }

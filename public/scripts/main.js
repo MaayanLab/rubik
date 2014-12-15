@@ -58,7 +58,7 @@ require(['CanvasForGrids','AddColor','d3','jquery','SaveSvg','LabelBox','Layout'
   				"KEA",
   				// "Kinase_Perturbations_from_GEO",
   				// "Kinase_Perturbations_from_L1000",
-  				"KEGG",
+  				"KEGG_new",
   				"WikiPathways",
   				"GO_Biological_Process",
   				"MGI_Mammalian_Phenotype_Level_4",

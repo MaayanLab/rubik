@@ -16,7 +16,7 @@ exampleInputs.forEach(function(inputPath){
 		content = fs.readFileSync(inputPath),
 		input = {};
 
-	input.tag = baseName;
+	input.tag = baseName.slice(0,3);
 	input.genes = content.toString();
 	inputs.push(input);
 })
