@@ -12,8 +12,9 @@ var headers = {
 exports.enrich = function(input,res){
     var libraries = ['WikiPathways_pathways','KEGG_pathways']
 
+    console.log(input.slice(0,20))
     var options = {
-        url: 'http://127.0.0.1:14803/custom/Rubik',
+        url: 'http://127.0.0.1:15300/custom/Rubik',
         method: 'POST',
         headers: headers,
         form: {'input': JSON.stringify(input),

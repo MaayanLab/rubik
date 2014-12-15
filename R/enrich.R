@@ -35,7 +35,7 @@ enrich <- function(input,chosenLibraries){
   enrichResults <- list()
   for(geneList in input){
     enrichResult <- list()
-    enrichResult$tag <- geneList$desc
+    enrichResult$tag <- geneList$tag
     genes <- geneList$genes
     enrichResult$data <- 
       lapply(libraries[chosenLibraries],

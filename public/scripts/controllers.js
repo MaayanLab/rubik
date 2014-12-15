@@ -16,7 +16,7 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 	$scope.moreThanOne = false;
 
 	$scope.addGeneList = function(){
-		$scope.geneLists.push({desc:"",genes:""});
+		$scope.geneLists.push({tag:"",genes:""});
 		$scope.geneListCount += 1;
 	}
 
@@ -39,20 +39,25 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 	});
 
 	// for test purpose
-	$scope.fillInText = function(){
-			$http.get('data/example-genes-lite.txt').success(function(data){
-				$scope.geneLists[0].genes = data;
-				$scope.geneLists[0].desc = "Enrichr Example";
-			});
-	}
-	$scope.fillInText();
+	// $scope.fillInText = function(){
+	// 	var basePath = '../R/test/',
+	// 		exampleInputs = [basePath+'ELK1-19687146-Hela cells-human.txt .n.txt',
+	// 					basePath+'HSA04540_GAP_JUNCTION.txt .n.txt',
+	// 					'data/example-genes-lite.txt']
+			
+	// 		$http.get('data/example-genes-lite.txt').success(function(data){
+	// 			$scope.geneLists[0].genes = data;
+	// 			$scope.geneLists[0].tag = "Enrichr Example";
+	// 		});
+	// }
+	// $scope.fillInText();
 
 	$scope.visualize = function(){
 		console.log($scope.geneLists);
 		if($scope.allInputValid){
 			var input = _.map($scope.geneLists,function(geneList){
 				var e = {};
-				e.desc = geneList.desc;
+				e.tag = geneList.tag;
 				e.genes = _.unique(S(geneList.genes.toUpperCase())
 				.trim().s.split("\n"));
 				e.genes = _.map(e.genes,function(gene){

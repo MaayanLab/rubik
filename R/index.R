@@ -2,17 +2,23 @@ library(Rook)
 library(Matrix)
 library(jsonlite)
 
-
-
 # prelude, Fisher exact function on input ---------------------------------
-
 source("enrich.R")
 
 
+# format input ------------------------------------------------------------
+
+format.input<-function(input){
+  lapply(1:length(input$tag),function(i){
+    geneList <- list()
+    geneList$tag <- input$tag[i]
+    geneList$genes <- input$genes[[i]]
+    geneList
+  })
+}
 
 
 # server start ------------------------------------------------------------
-
 s <- Rhttpd$new()
 s$start(listen='127.0.0.1')
 
@@ -27,14 +33,16 @@ my.app <- function(env){
   print('good')
   input <- fromJSON(req$POST()$input)
   libraryNames <- fromJSON(req$POST()$libraries)
-  print(input$desc)
-  print(input$genes)
+  input <- format.input(input)
+  
+  print(input)
   print(libraryNames)
   
+  
   ptm <- proc.time()
-  res$write('g.transform(param)')
+  res$write(toJSON(enrich(input,libraryNames),auto_unbox=TRUE))
   print(proc.time()-ptm)
-  res$finish()   
+  res$finish()
 }
 
 s$add(app=my.app, name='Rubik')

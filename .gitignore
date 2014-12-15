@@ -1,3 +1,4 @@
 node_modules/
 public/libraries/
 *.Rhistory
+R/sync.ffs_db

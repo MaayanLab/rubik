@@ -44,14 +44,14 @@ eachEnrichTest <- function(exampleInput,libraryName,pathx){
 }
 
 
-pathx <- "data/ELK1-19687146-Hela cells-human.txt"
+pathx <- "test/ELK1-19687146-Hela cells-human.txt"
 splitGenesByNewline(pathx)
 exampleInput <- readLines(pathx)
 exampleInputChEA2 <- unlist(strsplit(exampleInput,"\t"))
 sortedRes <- eachEnrichTest(exampleInputChEA2,"ChEA2",pathx)
 stopifnot(sortedRes[[1]]$term=="ELK1-19687146-Hela cells-human")
 
-pathx <- "data/HSA04540_GAP_JUNCTION.txt"
+pathx <- "test/HSA04540_GAP_JUNCTION.txt"
 splitGenesByNewline(pathx)
 exampleInput <- readLines(pathx)
 exampleInputKEGG <- unlist(strsplit(exampleInput,"\t"))

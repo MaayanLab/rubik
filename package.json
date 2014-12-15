@@ -13,6 +13,7 @@
     "natural":"0.1.29"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "protractor": "protractor test/protractor-conf.js"
 	}
 }
