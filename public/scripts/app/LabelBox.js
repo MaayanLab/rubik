@@ -1,23 +1,15 @@
-define(['jquery','Util','S'],function($,Util,S){
+define(['jquery','Util'],function($,Util){
 
 	var LabelBox = function(args){
 		this.el = $(args.selector);
+		this.textify = args.textify
 	}
+
 
 	var methods = {
 		select:function(data){
 			var d = data.d;
-
-			var identity = S(d.identity).replaceAll('_',' ').replaceAll('-',' ').trim().s;
-			if(d.posPercent==null){
-				var label =  [identity,d.pval.toExponential(1),
-				'null'].join(', ');
-			}else{
-				var label = [identity,d.pval.toExponential(1),
-				(d.posPercent-0.5).toFixed(2)].join(', ');
-			}
-			label = 
-			this.el.val(label).select();
+			this.el.val(this.textify(d)).select();
 		}
 	}
 

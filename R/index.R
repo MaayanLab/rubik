@@ -3,6 +3,7 @@ library(Matrix)
 library(jsonlite)
 
 # prelude, Fisher exact function on input ---------------------------------
+setwd('./rubik')
 source("enrich.R")
 
 
@@ -35,12 +36,12 @@ my.app <- function(env){
   libraryNames <- fromJSON(req$POST()$libraries)
   input <- format.input(input)
   
-  print(input)
+  print('new request')
   print(libraryNames)
   
   
   ptm <- proc.time()
-  res$write(toJSON(enrich(input,libraryNames),auto_unbox=TRUE))
+  res$write(toJSON(enrich(input,libraryNames),digits=6,auto_unbox=TRUE))
   print(proc.time()-ptm)
   res$finish()
 }

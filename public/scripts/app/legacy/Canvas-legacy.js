@@ -7,7 +7,6 @@ function Canvas(args){
 										   .attr('width',this.size)
 										   .attr('height',this.size);
 	this.name = args.name;
-	this.stringify = args.textify||function(d){return d.identity};
 
 	this.shiftX = this.properShift(args.shiftX||0);
 	this.shiftY = this.properShift(args.shiftY||0);
@@ -118,17 +117,8 @@ function Canvas(args){
 								self.trigger('tile.click',{d:d,i:i});
 					})
 					.append("title")
-					.text(function(d){
-						return self.stringify(d);
-					});
+					.text(function(d){return d.identity;});
 		},
-
-
-		fillTitleInChangeData: function(d,i){
-			
-		},
-
-
 
 		changeData:function(inputData){
 			if(!this.data){
@@ -155,11 +145,10 @@ function Canvas(args){
 					})
 					.each(function(d,i){
 						var tile = d3.select(this);
-						var label = self.stringify(d);
 						if(tile.select('title')[0][0]){
-							tile.select('title').text(label);
+							tile.select('title').text(d.identity);
 						}else{
-							tile.append('title').text(label);
+							tile.append('title').text(d.identity);
 						}
 					});
 			// var t = this.svgG.transition().duration(3000);

@@ -10,11 +10,11 @@ var headers = {
 
 
 exports.enrich = function(input,res){
-    var libraries = ['ChEA2','KEGG_pathways',"GeneOntology_BP",
-        "GeneOntology_MF","MGI_MP_top4","KEA"]
+    var libraries = ['ChEA2','KEGG_pathways','WikiPathways_pathways',
+    "GeneOntology_BP","GeneOntology_MF","MGI_MP_top4","KEA"]
 
     var options = {
-        url: 'http://127.0.0.1:26467/custom/Rubik',
+        url: 'http://127.0.0.1:27357/custom/Rubik',
         method: 'POST',
         headers: headers,
         form: {'input': JSON.stringify(input),

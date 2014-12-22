@@ -90,7 +90,8 @@ exports.visualize = function(enrichRes,res){
 	// 		  			---- libraryName1
 	// 		 					---- [term]
 	// 		 							--- term
-	// 		 							--- pval 
+	// 		 							--- pval
+	//									---	overlap 
 
 	var tags = us.map(enrichRes,function(perRes){return perRes.tag});
 	var gridNames = us.map(Object.keys(enrichRes[0]['data']),

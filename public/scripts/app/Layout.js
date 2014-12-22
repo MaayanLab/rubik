@@ -11,6 +11,7 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 		this.enrichments = args.enrichments||undefined;
 		this.tags = args.tags||undefined;
 		this.labelBox = args.labelBox;
+		this.textify = args.textify;
 
 	}
 
@@ -18,10 +19,14 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 	//private methods:
 	var addEnrichment = function(enrichment,grid){
 		return _.map(grid,function(tile){
-			tile.pval = enrichment[tile.identity].pval;
-			tile.count = enrichment[tile.identity].count;
-			tile.posPercent = enrichment[tile.identity].posPercent;
-			return tile;
+			// it is critical to call clone here, or else
+			// the data will be attched to the grid and changed everytime
+			// the addEnrichment function calls.
+			var newTile = _.clone(tile);
+			_.each(enrichment[tile.identity],function(val,key){
+				newTile[key] = val;
+			})
+			return newTile;
 		});
 	}
 
@@ -61,7 +66,7 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 				var grid = this.grids[key];
 				grid = addEnrichment(self.enrichments[0][key],grid);
 				grid = this.addColor.add(key,grid);
-				var canvas = new Canvas({containerID:key,stageSize:300});
+				var canvas = new Canvas({containerID:key,stageSize:300,textify:this.textify});
 				canvas.changeData(grid);
 				this.labelBox.listenTo(canvas,'tile.click',this.labelBox.select);
 			}
@@ -88,7 +93,7 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 					var grid = self.grids[gridName];
 					grid = addEnrichment(self.enrichments[i][gridName],grid);
 					grid = self.addColor.add(gridName,grid);
-					var canvas = new Canvas({containerID:id,stageSize:300});
+					var canvas = new Canvas({containerID:id,stageSize:300,textify:self.textify});
 					canvas.changeData(grid);
 					self.labelBox.listenTo(canvas,'tile.click',self.labelBox.select);
 				});

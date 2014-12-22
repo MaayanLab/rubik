@@ -44,11 +44,12 @@ shim:{
 
 
 
-require(['CanvasForGrids','AddColor','d3','jquery','SaveSvg','LabelBox','Layout'],
-	function(Canvas,AddColor,d3,$,SaveSvg,LabelBox,Layout){
+require(['AddColor','d3','jquery',
+	'SaveSvg','LabelBox','Layout','Textify'],
+	function(AddColor,d3,$,SaveSvg,LabelBox,Layout,Textify){
 
 
-	var baseURL = window.location.protocol+"//"+window.location.host + "/grids/";
+	var baseURL = window.location.protocol+"//"+window.location.host + "/rubik/";
 	// grids is a global variable encoded in html
 	var gridNamesNoOrder = Object.keys(grids);
 
@@ -74,13 +75,24 @@ require(['CanvasForGrids','AddColor','d3','jquery','SaveSvg','LabelBox','Layout'
 			gridNames.push(e);
 	});
 
+	// get a random key from an term obj.
+	var termObj;
+	for(var library in enrichments[0]){
+		break;
+	}
+	for(var termName in enrichments[0][library]){
+		termObj = enrichments[0][library][termName];
+		break;
+	}
 
 	var addColor = new AddColor({gridNames:gridNames});
-	var labelBox = new LabelBox({selector:".labelBox"});
+	var textify = new Textify({keys:Object.keys(termObj)});
+	var labelBox = new LabelBox({selector:".labelBox",textify:textify});
 
 
 	var layout = new Layout({addColor:addColor,gridNames:gridNames,
-			grids:grids,labelBox:labelBox,enrichments:enrichments,tags:tags});
+			grids:grids,labelBox:labelBox,enrichments:enrichments,
+			tags:tags,textify:textify});
 
 	if(tags.length==1) layout.single();
 	else layout.compare();
