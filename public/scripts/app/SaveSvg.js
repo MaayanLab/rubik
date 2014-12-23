@@ -2,7 +2,7 @@ define(['underscore','backbone','d3','jquery','S'],function(_, Backbone, d3,$,S)
 
 function SaveSvg(args){
 	this.baseURL = args.baseURL||'http://127.0.0.1:8080/rubik/';
-	this.gridsPerRow = args.gridsPerRow||2;
+	this.gridsPerRow = args.gridsPerRow||d3.selectAll('.tag').size();
 }
 
 

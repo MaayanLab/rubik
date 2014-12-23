@@ -64,7 +64,7 @@ require(['AddColor','d3','jquery',
   				"GO_Biological_Process",
   				"MGI_Mammalian_Phenotype_Level_4",
 
-  				// "GO_Molecular_Function",
+  				"GO_Molecular_Function",
   				
 		];
 
@@ -99,7 +99,7 @@ require(['AddColor','d3','jquery',
 	
 
 
-	var saveSvg = new SaveSvg({baseURL:baseURL,gridsPerRow:2});
+	var saveSvg = new SaveSvg({baseURL:baseURL});
 	$('button').click(function(){
 		saveSvg.saveOne();
 	});
