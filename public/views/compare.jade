@@ -11,9 +11,10 @@ html(lang="en")
     link(rel="stylesheet",href="CSS/jquery-ui.css")
     link(rel="stylesheet",href="CSS/main.css")
   body(style='text-align:center')
-    div(class="pure-menu pure-menu-horizontal  custom-menu")
+    div(class="pure-menu pure-menu-horizontal  custom-menu" id="topMenu")
       img(src="CSS/images/rubic.png", alt="Rubic", class='rubic')
       span(class='rubic-title') Rubik
       input(class="labelBox", placeholder="click a tile to show its label here so that you can copy it : )")
       button(class="pure-button pure-button-active custom-button") Download
+      .pure-g.tag-container
     div(class="pure-g container", id="container")

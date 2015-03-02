@@ -35,10 +35,8 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 			var pureGridClass = 'pure-u-1-'+(tags.length);
 			tags.forEach(function(tag,i){
 				var left = (1/tags.length)*100;
-				d3.select('body').append('div')
-							  .attr('class','tag')
-							  .style('width',left.toFixed(1)+'%')
-							  .style('left',left.toFixed(1)*i+'%')
+				d3.select('.tag-container').append('div')
+							  .attr('class',pureGridClass)
 							  .text(tag);
 			});
 
@@ -77,6 +75,9 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 			var tags = addTags(this),
 			    self = this;
 				pureGridClass = 'pure-u-1-'+(tags.length);
+			$('#container').css('min-width',310*tags.length);
+			// $('#tagContainer').css('min-width',310*tags.length);
+			$('#topMenu').css('min-width',310*tags.length);
 			this.gridNames.forEach(function(gridName){
 				self.container.append('div')
 			 			  .attr('class','pure-u-1-1')

@@ -4,8 +4,8 @@ var indexControllers = angular.module('indexControllers', ['services']);
 var baseURL = window.location.protocol+"//"+window.location.host + "/rubik/";
 
 var process = _.identity;
-indexControllers.controller('GeneLists', ['$scope', '$http', 'loadGeneList','exampleURLs',
-function($scope,$http,loadGeneList,exampleURLs){
+indexControllers.controller('GeneLists', ['$scope', '$http', 'loadExamples',
+function($scope,$http,loadExamples){
 		// $scope.fillInText = function(){
 		// 	$http.get('data/example-genes.txt').success(function(data){
 		// 		$scope.genes = data;
@@ -27,14 +27,14 @@ function($scope,$http,loadGeneList,exampleURLs){
 	}
 
 	$scope.fillInExamples = function(){
-		var min = $scope.geneListCount < exampleURLs.length ?
-			$scope.geneListCount : exampleURLs.length;
-		for(var i=0; i<min; i++){
-			loadGeneList(exampleURLs[i]).then(function(data){
-				$scope.geneLists[i].tag = exampleURLs[i].split('/').splice(-1);
-				$scope.geneLists[i].genes = data;
+			loadExamples().then(function(data){
+				var min = $scope.geneListCount < data.length ?
+					$scope.geneListCount : data.length;
+				for(var i=0; i<min; i++){
+					$scope.geneLists[i].tag = data[i].tag;
+					$scope.geneLists[i].genes = data[i].genes.join('\n');
+				}
 			})
-		}
 	}
 
 	$scope.addGeneList();

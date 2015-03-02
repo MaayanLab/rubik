@@ -11,8 +11,11 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	padding-bottom: 0.5em;
+	padding-bottom: 0.1em;
 	padding-top:0.5em;
+	border-bottom-style: solid !important;
+	border-bottom-color: white !important;
+	border-bottom-width: thin !important;
 }
 
 .custom-button{
@@ -22,6 +25,7 @@
 	vertical-align: 10%;
 	float:right;
 	margin-right: 0.8em;
+
 }
 
 h4{
@@ -44,7 +48,7 @@ h4{
 }
 
 .container{
-	margin-top:1em;
+	margin-top:3.5em;
 
 }
 
@@ -56,6 +60,7 @@ h4{
 	color: white;
 	position: fixed;
 	top: 2.8em;
+	min-width: 310px;
 	/*width: 50%;*/
 	/*left: 50%;*/
 	border-bottom-style: solid;
@@ -84,3 +89,14 @@ h4{
 .description-title{
 	color:white;
 }
+
+.canvas-container{
+	min-width: 310px;
+}
+
+.tag-container{
+	color: white;
+
+}
+
+
