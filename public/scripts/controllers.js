@@ -78,19 +78,6 @@ function($scope,$http,loadGeneList,exampleURLs){
 				return e;
 			});
 
-			// remove in the future
-			$.blockUI({ css: { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .5, 
-            color: '#fff' 
-        } });
-        d3.select('.blockMsg').select('h1').text('Processing...');
-        // end of remove in the future.
-
 			$http.post(baseURL+"enrich",{input:input})
 				.success(function(data) {
 				window.location=data;

@@ -9,7 +9,6 @@ define(['jquery','Util'],function($,Util){
 	var methods = {
 		select:function(data){
 			var d = data.d;
-			console.log(this.el);
 			this.el.val(this.textify(d)).select();
 		}
 	}
