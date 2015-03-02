@@ -99,7 +99,7 @@ require(['AddColor','d3','jquery',
 	
 
 
-	var saveSvg = new SaveSvg({baseURL:baseURL});
+	var saveSvg = new SaveSvg({baseURL:baseURL,gridsPerRow:tags.length});
 	$('button').click(function(){
 		saveSvg.saveOne();
 	});

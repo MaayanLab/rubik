@@ -86,10 +86,12 @@ define(['d3','underscore','Util','Canvas'],function(d3,_,Util,Canvas){
 			 			  .attr('class','hCompare')
 			 			  .text(gridName);
 				tags.forEach(function(tag,i){
-					var id = tag+'-'+gridName;
+					var id = 'rb'+new Date().getTime();
+					var canvasLabel = tag+'-'+gridName;
 					var holder = d3.select(self.selector).append('div')
 											.attr('class',pureGridClass)
-											.attr('id',id);
+											.attr('id',id)
+											.attr('label',canvasLabel);
 
 					var grid = self.grids[gridName];
 					grid = addEnrichment(self.enrichments[i][gridName],grid);

@@ -2,7 +2,7 @@ define(['underscore','backbone','d3','jquery','S'],function(_, Backbone, d3,$,S)
 
 function SaveSvg(args){
 	this.baseURL = args.baseURL||'http://127.0.0.1:8080/rubik/';
-	this.gridsPerRow = args.gridsPerRow||d3.selectAll('.tag').size();
+	this.gridsPerRow = args.gridsPerRow;
 }
 
 
@@ -41,8 +41,8 @@ var saveSvgMethods = {
 											.attr('transform','translate('+gridTranslate.x(i)+','+
 												gridTranslate.y(i)+')');
 
-			var gridName = $('svg').eq(i).parent().attr('id');
-			var gridTitle = S(gridName).replaceAll('_',' ').s;
+			var gridName = $('svg').eq(i).parent().attr('label');
+			var gridTitle = S(gridName).s;
 			
 			var titleElement = '<text transform="translate({{x}},{{y}})" font-szie="{{fontSize}}">{{gridTitle}}</text>';
 			var defaultValues = {gridTitle:gridTitle,x:3,y:-5.56,fontSize:20.25};
