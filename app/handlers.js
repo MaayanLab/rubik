@@ -2,8 +2,8 @@ var fs = require('fs');
 var us = require('underscore');
 // var packer = require('zip-stream');
 var archiver = require('archiver');
-var visualize = require('app/visualize.js').visualize;
-var enrich = require('app/enrichment.js').enrich;
+var visualize = require('./visualize.js').visualize;
+var enrich = require('./enrichment.js').enrich;
 
 
 
@@ -44,7 +44,7 @@ exports.saveSvg = function(req,res){
 	output.on('close',function(){
 		res.send(randomString);
 	});
-	
+
 }
 
 exports.saveOneSvg = function(req,res){

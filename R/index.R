@@ -3,7 +3,7 @@ library(Matrix)
 library(jsonlite)
 
 # prelude, Fisher exact function on input ---------------------------------
-setwd('./rubik')
+# setwd('./rubik')
 source("enrich.R")
 
 
@@ -21,7 +21,7 @@ format.input<-function(input){
 
 # server start ------------------------------------------------------------
 s <- Rhttpd$new()
-s$start(listen='127.0.0.1')
+s$start(listen='127.0.0.1',port=13373)
 
 
 my.app <- function(env){
@@ -30,16 +30,16 @@ my.app <- function(env){
   res <- Response$new()
   res$header("Access-Control-Allow-Origin","*")
   res$header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE")
-  
+
   print('good')
   input <- fromJSON(req$POST()$input)
   libraryNames <- fromJSON(req$POST()$libraries)
   input <- format.input(input)
-  
+
   print('new request')
   print(libraryNames)
-  
-  
+
+
   ptm <- proc.time()
   res$write(toJSON(enrich(input,libraryNames),digits=6,auto_unbox=TRUE))
   print(proc.time()-ptm)
@@ -49,4 +49,3 @@ my.app <- function(env){
 s$add(app=my.app, name='Rubik')
 ## Open a browser window and display the web app
 s$browse('Rubik')
-

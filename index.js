@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-var  rubik = require('app/handlers.js');
+console.log(__dirname)
+var  rubik = require('./app/handlers.js');
 
 app.use('/rubik',express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({limit:'50mb',extended:true}));

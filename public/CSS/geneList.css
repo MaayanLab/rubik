@@ -10,8 +10,12 @@
 
 
 .container{
-	margin-top:5em;
-	
+	margin-top:0.5em;
+
+}
+
+.load-button{
+	margin-top:3.5em;
 }
 
 .custom-button{
@@ -66,7 +70,7 @@
 .pure-form textarea{
 	/*width:218px;*/
 	/*height:300px;*/
-	border-radius: 0 0 4px 4px !important; 
+	border-radius: 0 0 4px 4px !important;
 	top: -1px;
 	height: 20em;
 }
@@ -89,4 +93,3 @@
 /*.input{
 	max-width: 20em;
 }*/
-
