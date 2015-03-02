@@ -1,5 +1,5 @@
 var request = require('request');
-var visualize = require('app/visualize.js').visualize;
+var visualize = require('./visualize.js').visualize;
 
 // Set the headers
 var headers = {
@@ -28,9 +28,8 @@ exports.enrich = function(input,res){
             console.log(body,typeof(body))
             // res.send(body);
             // var enrichRes = JSON.parse(body);
-            
+
             visualize(JSON.parse(body),res);
         }
     });
 }
-

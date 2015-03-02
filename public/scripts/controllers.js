@@ -1,10 +1,11 @@
-var indexControllers = angular.module('indexControllers', []);
+var indexControllers = angular.module('indexControllers', ['services']);
 
 
 var baseURL = window.location.protocol+"//"+window.location.host + "/rubik/";
 
 var process = _.identity;
-indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$http){
+indexControllers.controller('GeneLists', ['$scope', '$http', 'loadGeneList','exampleURLs',
+function($scope,$http,loadGeneList,exampleURLs){
 		// $scope.fillInText = function(){
 		// 	$http.get('data/example-genes.txt').success(function(data){
 		// 		$scope.genes = data;
@@ -23,6 +24,17 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 	$scope.removeGeneList = function(){
 		$scope.geneLists.pop();
 		$scope.geneListCount -= 1;
+	}
+
+	$scope.fillInExamples = function(){
+		var min = $scope.geneListCount < exampleURLs.length ?
+			$scope.geneListCount : exampleURLs.length;
+		for(var i=0; i<min; i++){
+			loadGeneList(exampleURLs[i]).then(function(data){
+				$scope.geneLists[i].tag = exampleURLs[i].split('/').splice(-1);
+				$scope.geneLists[i].genes = data;
+			})
+		}
 	}
 
 	$scope.addGeneList();
@@ -44,7 +56,7 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 	// 		exampleInputs = [basePath+'ELK1-19687146-Hela cells-human.txt .n.txt',
 	// 					basePath+'HSA04540_GAP_JUNCTION.txt .n.txt',
 	// 					'data/example-genes-lite.txt']
-			
+
 	// 		$http.get('data/example-genes-lite.txt').success(function(data){
 	// 			$scope.geneLists[0].genes = data;
 	// 			$scope.geneLists[0].tag = "Enrichr Example";
@@ -71,5 +83,5 @@ indexControllers.controller('GeneLists', ['$scope', '$http',function($scope,$htt
 				window.location=data;
 			});
 		}
-	}	
+	}
 }]);
