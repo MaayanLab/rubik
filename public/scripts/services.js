@@ -17,9 +17,17 @@ services.factory('exampleURLs',[function(){
       var deferred = $q.defer();
       $http.get('data/LJP56Genes.json').success(function(data){
 			var order = ['c15','c14','c1','c13','c9','c10'];
+			var map = {
+				'c15':'EGFR/MEK1:BT20:24h',
+				'c14':'PI3KA/mTOR:BT20:24h',
+				'c9':'PI3KA/mTOR:HS578T:3h',
+				'c10':'PI3KA/mTOR:HS578T:24h',
+				'c1':'CHAPERONE:MCF7:24h',
+				'c13':'PI3K/mTOR:MCF7:24h'
+			};
 			var inputs = _.map(order,function(tag){
 				var elem = {};
-				elem.tag = tag;
+				elem.tag = map[tag];
 				elem.genes = data[tag].dn;
 				return elem
 			})

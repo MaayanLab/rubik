@@ -46,7 +46,7 @@ var addColorMethods = {
 	// for raw grid data, basically an array of [identity, fitness].
 	addRaw: function(gridName,gridData){
 		var color = this.colorMap[gridName];
-		var scaleExponent = 3;
+		var scaleExponent = 1;
 		var weights = _.map(gridData,function(d){return d[1]});
 		var colorScale = d3.scale.pow().exponent(scaleExponent)
 						.domain([_.min(weights),_.max(weights)])
@@ -67,7 +67,7 @@ var addColorMethods = {
 
 	add: function(gridName,gridData){
 		var color = this.colorMap[gridName];
-		var scaleExponent = 2;
+		var scaleExponent = 1.5;
 		// var weights = _.map(gridData,function(d){return -math.log(d.pval,2)});
 		var pvals = _.map(gridData,function(d){return d.pval});
 		var weights = getNonInfiniteWeights(pvals,2);
