@@ -16,6 +16,12 @@
 
 .load-button{
 	margin-top:3.5em;
+	border-width: 1.5px;
+border-color: black;
+/* border: black; */
+background-color: transparent;
+border-style: solid;
+border-radius: 0;
 }
 
 .custom-button{
