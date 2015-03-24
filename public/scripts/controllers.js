@@ -1,7 +1,8 @@
 var indexControllers = angular.module('indexControllers', ['services']);
 
 
-var baseURL = window.location.protocol+"//"+window.location.host + "/rubik/";
+var idx = window.location.href.lastIndexOf('/');
+var baseURL = window.location.href.slice(0,idx+1);
 
 var process = _.identity;
 indexControllers.controller('GeneLists', ['$scope', '$http', 'loadExamples',
@@ -80,7 +81,7 @@ function($scope,$http,loadExamples){
 
 			$http.post(baseURL+"enrich",{input:input})
 				.success(function(data) {
-				window.location=data;
+					window.location=baseURL+data;
 			});
 		}
 	}

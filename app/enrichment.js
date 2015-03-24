@@ -7,7 +7,7 @@ var headers = {
     'Content-Type':     'application/x-www-form-urlencoded'
 }
 
-    
+
 
 exports.enrich = function(input,res){
     var libraries = ['ChEA2','KEGG_pathways','WikiPathways_pathways',
@@ -25,7 +25,7 @@ exports.enrich = function(input,res){
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             // Print out the response body
-            console.log(body,typeof(body))
+            console.log(body.slice(0,20),typeof(body))
             // res.send(body);
             // var enrichRes = JSON.parse(body);
 

@@ -7,7 +7,7 @@ var natural = require('natural');
 
 var compareTemplateFn = jade.compileFile('public/views/compare.jade',{pretty:true});
 
-var baseURL = 'http://10.91.53.79:8080/rubik/';
+// var baseURL = 'http://10.91.53.79:8080/rubik/';
 
 
 var libraryNameToGridName = {'ChEA2':'ChEA','KEGG_pathways':'KEGG_new',
@@ -56,7 +56,7 @@ var averageDuplicateTerms = function(termsArr){
 			});
 		}
 	});
-	
+
 	for(key in library){
 		attrs.forEach(function(attr){
 			library[key][attr] = average(library[key][attr])
@@ -91,7 +91,7 @@ exports.visualize = function(enrichRes,res){
 	// 		 					---- [term]
 	// 		 							--- term
 	// 		 							--- pval
-	//									---	overlap 
+	//									---	overlap
 
 	var tags = us.map(enrichRes,function(perRes){return perRes.tag});
 	var gridNames = us.map(Object.keys(enrichRes[0]['data']),
@@ -100,7 +100,7 @@ exports.visualize = function(enrichRes,res){
 	gridNames.forEach(function(gridName){
 		readGridsTasks[gridName] = function(callback){
 			fs.readFile('public/jsonGrids/'+gridName+'.json',function(err,data){
-				callback(err,JSON.parse(data.toString()));	
+				callback(err,JSON.parse(data.toString()));
 			});
 		}
 	});
@@ -115,10 +115,10 @@ exports.visualize = function(enrichRes,res){
 				var gridName = libraryNameToGridName[libraryName];
 				var libraryResult = enrichResult[libraryName];
 				var libraryResult = averageDuplicateTerms(libraryResult);
-				
+
 				// libraryResult struecture: {term:{pval,pospercent,count}}
 				enrichment[gridName] = libraryResult;
-				
+
 				// make use of the side effect of for loop to normalize term name in grid.
 				if(i==0){
 					var grid = grids[gridName];
@@ -147,7 +147,7 @@ exports.visualize = function(enrichRes,res){
 			compareTemplateFn({tags:tags,enrichments:enrichments,grids:canvases}),
 			function(err,results){
 				if(err) throw err;
-				res.send(baseURL+filename);	
+				res.send(filename);
 		});
 	}); // async.parallel
 }
