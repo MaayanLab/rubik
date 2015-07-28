@@ -14,7 +14,8 @@ exports.enrich = function(input,res){
     "GeneOntology_BP","GeneOntology_MF","MGI_MP_top4","KEA"]
 
     var options = {
-        url: 'http://127.0.0.1:13373/custom/Rubik',
+      //http://127.0.0.1:13373/custom/Rubik
+        url: 'http://146.203.54.165:13373/custom/Rubik',
         method: 'POST',
         headers: headers,
         form: {'input': JSON.stringify(input),
