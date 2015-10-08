@@ -81,7 +81,7 @@ function($scope,$http,loadExamples){
 
 			$http.post(baseURL+"enrich",{input:input})
 				.success(function(data) {
-					window.location=baseURL+data;
+					window.location=baseURL+'result/'+data;
 			});
 		}
 	}

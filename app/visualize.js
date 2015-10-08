@@ -143,7 +143,7 @@ exports.visualize = function(enrichRes,res){
 
 		var randStr = Math.random().toString(36).substring(7);
 		var filename = 'rubik_'+randStr+'.html';
-		fs.writeFile('public/'+filename,
+		fs.writeFile('public/result/'+filename,
 			compareTemplateFn({tags:tags,enrichments:enrichments,grids:canvases}),
 			function(err,results){
 				if(err) throw err;
